@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>League Simulation</title>
+</head>
+<body>
+    <h1>League Table</h1>
+    <table border="1">
+        <tr>
+            <th>Teams</th>
+            <th>PTS</th>
+            <th>P</th>
+            <th>W</th>
+            <th>D</th>
+            <th>L</th>
+            <th>GS</th>
+            <th>GC</th>
+            <th>GD</th>
+        </tr>
+        {{range .Teams}}
+        <tr>
+            <td>{{.Name}}</td>
+            <td>{{.Points}}</td>
+            <td>{{.Played}}</td>
+            <td>{{.Won}}</td>
+            <td>{{.Drawn}}</td>
+            <td>{{.Lost}}</td>
+            <td>{{.GoalsScored}}</td>
+            <td>{{.GoalsConceded}}</td>
+            <td>{{.GoalDifference}}</td>
+        </tr>
+        {{end}}
+    </table>
+
+    <h1>Match Results - Week {{.CurrentWeek}}</h1>
+    <table border="1">
+        <tr>
+            <th>Home Team</th>
+            <th>Away Team</th>
+            <th>Home Goals</th>
+            <th>Away Goals</th>
+        </tr>
+        {{range .Matches}}
+        <tr>
+            <td>{{.HomeTeamName}}</td>
+            <td>{{.AwayTeamName}}</td>
+            <td>{{.HomeGoals}}</td>
+            <td>{{.AwayGoals}}</td>
+        </tr>
+        {{end}}
+    </table>
+
+    <h1>Week {{.CurrentWeek}} Predictions</h1>
+    <table border="1">
+        <tr>
+            <th>Team</th>
+            <th>Prediction</th>
+        </tr>
+        {{range .Predictions}}
+        <tr>
+            <td>{{.Team}}</td>
+            <td>{{.Percentage}}%</td>
+        </tr>
+        {{end}}
+    </table>
+
+    <form action="/next_week" method="get">
+        <button type="submit">Next Week</button>
+    </form>
+    <form action="/play_all" method="get">
+        <button type="submit">Play All</button>
+    </form>
+</body>
+</html>
